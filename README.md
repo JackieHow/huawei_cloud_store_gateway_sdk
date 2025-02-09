@@ -48,8 +48,9 @@ headers = {
 }
 app_key = 'your_app_key'
 app_secret = 'your_app_secret'
+body = ''
 
-result = HuaweiCloudStoreGatewaySdk.sign_request("POST", url, headers, "")
+result = HuaweiCloudStoreGatewaySdk.sign_request("POST", url, headers, body)
 puts result[:headers]["Authorization"]
 
 This will output the Authorization header with the correct signature.
