@@ -5,8 +5,8 @@ require_relative "lib/huawei_cloud_store_gateway_sdk/version"
 Gem::Specification.new do |spec|
   spec.name = "huawei_cloud_store_gateway_sdk"
   spec.version = HuaweiCloudStoreGatewaySdk::VERSION
-  spec.authors = ["TODO: Write your name"]
-  spec.email = ["TODO: Write your email address"]
+  spec.authors = ["jackie"]
+  spec.email = ["hjq1033061893@gmail.com"]
 
   spec.summary = "Huawei Cloud Store Gateway SDK for Ruby."
   spec.description = "A Ruby SDK for interacting with Huawei Cloud Store Gateway, providing easy-to-use APIs."
