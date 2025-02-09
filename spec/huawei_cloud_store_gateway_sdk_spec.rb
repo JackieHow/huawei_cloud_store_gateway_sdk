@@ -12,19 +12,31 @@ RSpec.describe HuaweiCloudStoreGatewaySdk do
   let(:app_secret) { '123' }
 
   describe 'sign_request' do
+    before do
+      described_class.configure do |config|
+        config.app_key = app_key
+        config.app_secret = app_secret
+      end
+    end
 
     it 'includes the correct signature in Authorization header' do
-      result = described_class.sign_request("POST", url, headers, app_key, app_secret, "")
+      result = described_class.sign_request("POST", url, headers, "")
       expect(result[:headers]["Authorization"]).to include(signature)
     end
 
     it 'different app_key have same signature ' do
-      result = described_class.sign_request("POST", url, headers, "wrong_key123", app_secret, "")
+      described_class.configure do |config|
+        config.app_key = "wrong_key123"
+      end
+      result = described_class.sign_request("POST", url, headers, "")
       expect(result[:headers]["Authorization"]).to include(signature)
     end
 
     it 'different secret, signature is different' do
-      result = described_class.sign_request("POST", url, headers, app_key, 'wrong secret', "")
+      described_class.configure do |config|
+        config.app_secret = "wrong secret"
+      end
+      result = described_class.sign_request("POST", url, headers, "")
       expect(result[:headers]["Authorization"]).not_to include(signature)
     end
   end
@@ -64,9 +76,7 @@ RSpec.describe HuaweiCloudStoreGatewaySdk do
       result = described_class.sign_request(
         "POST",
         url,
-        headers,
-        HuaweiCloudStoreGatewaySdk.configuration.app_key,
-        HuaweiCloudStoreGatewaySdk.configuration.app_secret, ""
+        headers, ""
       )
       expect(result[:headers]["Authorization"]).to include(signature)
     end

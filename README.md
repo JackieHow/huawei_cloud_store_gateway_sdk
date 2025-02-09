@@ -1,39 +1,56 @@
 # HuaweiCloudStoreGatewaySdk
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/huawei_cloud_store_gateway_sdk`. To experiment with that code, run `bin/console` for an interactive prompt.
+A Ruby SDK for interacting with Huawei Cloud's Store Gateway API. This SDK helps in generating request signatures and provides methods for configuring the SDK with your API key and secret to authenticate API requests.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add the following to your Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem 'huawei_cloud_store_gateway_sdk'
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Then run bundle install:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+bundle install
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Alternatively, you can install it directly via the terminal:
 
-## Usage
+gem install huawei_cloud_store_gateway_sdk
 
-TODO: Write usage instructions here
+Configuration
 
-## Development
+Before making requests with the SDK, you need to configure it with your app_key and app_secret. You can do this as follows:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+HuaweiCloudStoreGatewaySdk.configure do |config|
+  config.app_key = 'your_app_key'
+  config.app_secret = 'your_app_secret'
+end
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Once the SDK is configured, you can access the configuration like this:
 
-## Contributing
+configuration = HuaweiCloudStoreGatewaySdk.configuration
+puts configuration.app_key    # => 'your_app_key'
+puts configuration.app_secret # => 'your_app_secret'
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/huawei_cloud_store_gateway_sdk. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/huawei_cloud_store_gateway_sdk/blob/master/CODE_OF_CONDUCT.md).
+Usage
 
-## License
+Signing Requests
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The sign_request method signs the request with the provided HTTP method, URL, headers, app_key, and app_secret. It generates the required signature and includes it in the Authorization header.
 
-## Code of Conduct
+Example usage:
 
-Everyone interacting in the HuaweiCloudStoreGatewaySdk project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/huawei_cloud_store_gateway_sdk/blob/master/CODE_OF_CONDUCT.md).
+url = "https://mkt.myhuaweicloud.com/api/mkp-openapi-public/global/v1/license/activate"
+headers = {
+  "x-stage" => "RELEASE",
+  "X-Sdk-Date" => "20240317T144237Z",
+  "Content-Type" => "application/json"
+}
+app_key = 'your_app_key'
+app_secret = 'your_app_secret'
+
+result = HuaweiCloudStoreGatewaySdk.sign_request("POST", url, headers, "")
+puts result[:headers]["Authorization"]
+
+This will output the Authorization header with the correct signature.
+  
