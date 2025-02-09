@@ -27,14 +27,14 @@ module HuaweiCloudStoreGatewaySdk
   class HwStoreSDK
     attr_accessor :method, :uri, :headers, :body, :query, :app_key, :app_secret
 
-    def initialize(method, uri, headers, app_key, app_secret, body)
+    def initialize(method, uri, headers, body)
       @method = method
       @uri = URI(uri)
       @headers = headers.transform_keys(&:to_s)
       @body = body
       @query = @uri.query ? URI.decode_www_form(@uri.query).to_h : {}
-      @app_key = app_key
-      @app_secret = app_secret
+      @app_key = HuaweiCloudStoreGatewaySdk.configuration.app_key
+      @app_secret = HuaweiCloudStoreGatewaySdk.configuration.app_secret
     end
 
     def full_path
@@ -44,8 +44,8 @@ module HuaweiCloudStoreGatewaySdk
     end
   end
 
-  def sign_request(method, uri, headers, app_key, app_secret, body)
-    request = HwStoreSDK.new(method, uri, headers, app_key, app_secret, body)
+  def sign_request(method, uri, headers, body)
+    request = HwStoreSDK.new(method, uri, headers, body)
     sign_headers(request)
     {
       url: request.full_path,
