@@ -3,21 +3,21 @@
 require_relative "lib/huawei_cloud_store_gateway_sdk/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "huawei_cloud_store_gateway_sdk"
+  spec.name = "huaweicloud-sdk-ruby"
   spec.version = HuaweiCloudStoreGatewaySdk::VERSION
   spec.authors = ["jackie"]
   spec.email = ["hjq1033061893@gmail.com"]
 
   spec.summary = "Huawei Cloud Store Gateway SDK for Ruby."
   spec.description = "A Ruby SDK for interacting with Huawei Cloud Store Gateway, providing easy-to-use APIs."
-  spec.homepage = "https://github.com/JackieHow/huawei_cloud_store_gateway_sdk"
+  spec.homepage = "https://github.com/JackieHow/huaweicloud-sdk-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/JackieHow/huawei_cloud_store_gateway_sdk"
-  spec.metadata["changelog_uri"] = "https://github.com/JackieHow/huawei_cloud_store_gateway_sdk/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/JackieHow/huaweicloud-sdk-ruby"
+  spec.metadata["changelog_uri"] = "https://github.com/JackieHow/huaweicloud-sdk-ruby/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

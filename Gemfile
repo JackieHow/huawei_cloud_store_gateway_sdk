@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in huawei_cloud_store_gateway_sdk.gemspec
+# Specify your gem's dependencies in huaweicloud-sdk-ruby.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
