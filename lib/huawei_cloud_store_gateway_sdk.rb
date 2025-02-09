@@ -27,7 +27,6 @@ module HuaweiCloudStoreGatewaySdk
   class HwStoreSDK
     attr_accessor :method, :uri, :headers, :body, :query, :app_key, :app_secret
 
-    # rubocop: disable Metrics/ParameterLists
     def initialize(method, uri, headers, app_key, app_secret, body)
       @method = method
       @uri = URI(uri)
@@ -54,8 +53,6 @@ module HuaweiCloudStoreGatewaySdk
       body: request.body
     }
   end
-
-  # rubocop: enable Metrics/ParameterLists
 
   def sign_headers(request)
     canonical_request_str, current_time = request_to_string(request)
